@@ -5,50 +5,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Las Despistadas – Trivial de Osorno</title>
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --rojo: #e63946;
-    --amarillo: #f4d35e;
-    --verde: #2a9d8f;
-    --azul: #457b9d;
-    --morado: #9b5de5;
-    --naranja: #f77f00;
-    --rosa: #f72585;
-    --fondo: #1a0a2e;
-    --carta: #ffffff0f;
+    --rojo: #ff006e;
+    --amarillo: #ffff00;
+    --verde: #00ff88;
+    --azul: #00f5ff;
+    --morado: #b700ff;
+    --naranja: #ff6b35;
+    --rosa: #ff10f0;
+    --fondo: #1a0033;
+    --carta: #2d0052;
   }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-font-family: ‘Nunito’, sans-serif;
-background: var(–fondo);
+font-family: 'Poppins', sans-serif;
+background: #0a0015;
 min-height: 100vh;
 overflow-x: hidden;
 color: #fff;
+font-weight: 500;
 }
 
 /* CONFETTI DE FONDO */
 .bg-pattern {
 position: fixed; inset: 0; pointer-events: none; z-index: 0;
-background-image:
-radial-gradient(circle at 20% 20%, #f4d35e22 0%, transparent 40%),
-radial-gradient(circle at 80% 80%, #e6394622 0%, transparent 40%),
-radial-gradient(circle at 50% 50%, #9b5de522 0%, transparent 60%);
+background: none;
 }
 
 .stars {
 position: fixed; inset: 0; pointer-events: none; z-index: 0;
-background-image:
-radial-gradient(1px 1px at 10% 15%, #fff8, transparent),
-radial-gradient(1px 1px at 30% 40%, #fff6, transparent),
-radial-gradient(1px 1px at 60% 10%, #fff8, transparent),
-radial-gradient(1px 1px at 80% 60%, #fff5, transparent),
-radial-gradient(1px 1px at 45% 80%, #fff7, transparent),
-radial-gradient(2px 2px at 90% 25%, #f4d35e, transparent),
-radial-gradient(2px 2px at 15% 70%, #f72585, transparent),
-radial-gradient(2px 2px at 70% 90%, #2a9d8f, transparent);
+background: none;
 }
 
 .container {
@@ -83,7 +73,6 @@ letter-spacing: 3px;
 line-height: 1;
 background: linear-gradient(135deg, var(–amarillo), var(–naranja), var(–rojo));
 -webkit-background-clip: text;
--webkit-text-fill-color: transparent;
 background-clip: text;
 text-shadow: none;
 filter: drop-shadow(0 0 20px #f4d35e55);
@@ -91,9 +80,10 @@ filter: drop-shadow(0 0 20px #f4d35e55);
 
 .subtitle {
 font-size: clamp(0.9rem, 3vw, 1.1rem);
-color: #ffffffaa;
+color: #00f5ff;
 margin-top: 8px;
 letter-spacing: 1px;
+font-weight: 600;
 }
 
 .osorno-badge {
@@ -124,9 +114,10 @@ margin-bottom: 4px;
 .totems-sub {
 text-align: center;
 font-size: 0.8rem;
-color: #ffffff66;
+color: #00f5ff;
 margin-bottom: 16px;
-letter-spacing: 1px;
+letter-spacing: 2px;
+font-weight: 700;
 }
 
 .totems-grid {
@@ -147,14 +138,15 @@ transition: transform 0.3s;
 .totem-face {
 width: 70px; height: 70px;
 border-radius: 50%;
-border: 3px solid #ffffff22;
+border: 3px solid #b700ff44;
 display: flex; align-items: center; justify-content: center;
 font-size: 2rem;
-background: #1a0a2e;
-filter: grayscale(1) opacity(0.25);
+background: #2d0052;
+filter: grayscale(1) opacity(0.3);
 transition: filter 0.5s, border-color 0.5s, transform 0.5s;
 position: relative;
 overflow: hidden;
+box-shadow: inset 0 0 10px #b700ff22;
 }
 
 .totem-face::after {
@@ -162,13 +154,13 @@ content: '?';
 position: absolute;
 font-family: 'Bangers', cursive;
 font-size: 2rem;
-color: #ffffff44;
+color: #b700ff66;
 }
 
 .totem.unlocked .totem-face {
 filter: none;
-border-color: var(–amarillo);
-box-shadow: 0 0 16px var(–amarillo);
+border-color: var(–rosa);
+box-shadow: 0 0 20px var(–rosa), inset 0 0 15px var(–rosa)33;
 transform: scale(1.05);
 animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
 }
@@ -177,14 +169,14 @@ animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
 
 .totem-name {
 font-size: 0.7rem;
-font-weight: 900;
+font-weight: 700;
 letter-spacing: 1px;
 text-transform: uppercase;
-color: #ffffff44;
+color: #b700ff66;
 transition: color 0.5s;
 }
 
-.totem.unlocked .totem-name { color: var(–amarillo); }
+.totem.unlocked .totem-name { color: var(–rosa); }
 
 @keyframes popIn {
 0% { transform: scale(0) rotate(-20deg); }
@@ -193,40 +185,44 @@ transition: color 0.5s;
 
 /* JUEGO */
 #game-section {
-background: #ffffff0a;
-border: 1px solid #ffffff15;
+background: rgba(45, 0, 82, 0.6);
+border: 2px solid #ff006e;
 border-radius: 20px;
 padding: 24px;
-backdrop-filter: blur(10px);
+backdrop-filter: blur(15px);
+box-shadow: 0 0 30px rgba(255, 0, 110, 0.3), inset 0 0 20px rgba(183, 0, 255, 0.1);
 }
 
 .progress-bar-wrap {
-background: #ffffff15;
+background: #b700ff22;
 border-radius: 100px;
 height: 8px;
 margin-bottom: 20px;
 overflow: hidden;
+border: 1px solid #b700ff44;
 }
 
 .progress-bar {
 height: 100%;
-background: linear-gradient(90deg, var(–verde), var(–amarillo));
+background: linear-gradient(90deg, var(–rosa), var(–azul));
 border-radius: 100px;
 transition: width 0.5s ease;
+box-shadow: 0 0 10px var(–rosa);
 }
 
 .q-counter {
 font-size: 0.75rem;
-color: #ffffff55;
+color: #00f5ff;
 letter-spacing: 2px;
 text-transform: uppercase;
 margin-bottom: 8px;
+font-weight: 700;
 }
 
 .question-text {
 font-size: clamp(1rem, 3vw, 1.3rem);
-font-weight: 900;
-line-height: 1.4;
+font-weight: 700;
+line-height: 1.5;
 margin-bottom: 20px;
 color: #fff;
 }
@@ -242,37 +238,42 @@ gap: 10px;
 }
 
 .option-btn {
-background: #ffffff0d;
-border: 2px solid #ffffff20;
+background: #2d0052;
+border: 2px solid #b700ff;
 color: #fff;
 padding: 12px 14px;
 border-radius: 12px;
-font-family: ‘Nunito’, sans-serif;
+font-family: 'Poppins', sans-serif;
 font-size: 0.95rem;
-font-weight: 700;
+font-weight: 600;
 cursor: pointer;
 text-align: left;
 transition: all 0.2s;
-line-height: 1.3;
+line-height: 1.4;
+box-shadow: 0 0 10px #b700ff22;
 }
 
 .option-btn:hover:not(:disabled) {
-background: #ffffff20;
-border-color: var(–amarillo);
+background: #b700ff;
+border-color: var(–rosa);
 transform: translateY(-2px);
+color: #fff;
+box-shadow: 0 0 20px var(–rosa);
 }
 
 .option-btn.correct {
-background: #2a9d8f33;
+background: #00ff8855;
 border-color: var(–verde);
-color: var(–verde);
+color: #00ff88;
 animation: correctPulse 0.4s ease;
+box-shadow: 0 0 15px var(–verde);
 }
 
 .option-btn.wrong {
-background: #e6394633;
+background: #ff006e55;
 border-color: var(–rojo);
-color: #ff8fa3;
+color: #ff006e;
+box-shadow: 0 0 15px var(–rojo);
 }
 
 @keyframes correctPulse {
@@ -285,34 +286,37 @@ color: #ff8fa3;
 margin-top: 16px;
 padding: 12px 16px;
 border-radius: 10px;
-font-weight: 700;
+font-weight: 600;
 font-size: 0.9rem;
 display: none;
 align-items: center;
 gap: 10px;
+backdrop-filter: blur(10px);
 }
 
 .feedback.show { display: flex; }
-.feedback.ok { background: #2a9d8f22; border: 1px solid #2a9d8f66; color: #7fffd4; }
-.feedback.fail { background: #e6394622; border: 1px solid #e6394666; color: #ffb3c1; }
+.feedback.ok { background: #00ff8833; border: 1px solid #00ff88; color: #00ff88; }
+.feedback.fail { background: #ff006e33; border: 1px solid #ff006e; color: #ff006e; }
 
 .next-btn {
 display: none;
 margin-top: 16px;
 width: 100%;
-background: linear-gradient(135deg, var(–rojo), var(–naranja));
-border: none;
+background: linear-gradient(135deg, var(–rosa), var(–azul));
+border: 2px solid var(–rosa);
 color: #fff;
 padding: 14px;
 border-radius: 12px;
-font-family: ‘Bangers’, cursive;
+font-family: 'Bangers', cursive;
 font-size: 1.3rem;
 letter-spacing: 2px;
 cursor: pointer;
 transition: transform 0.2s, box-shadow 0.2s;
+font-weight: 700;
+box-shadow: 0 0 20px var(–rosa)55;
 }
 
-.next-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px #e6394666; }
+.next-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px var(–rosa); }
 .next-btn.show { display: block; }
 
 /* SCORE */
@@ -322,13 +326,15 @@ justify-content: space-between;
 align-items: center;
 margin-bottom: 16px;
 font-size: 0.85rem;
-color: #ffffff88;
+color: #00f5ff;
+font-weight: 600;
 }
 
 .score-num {
 font-family: ‘Bangers’, cursive;
 font-size: 1.4rem;
-color: var(–amarillo);
+color: var(–rosa);
+text-shadow: 0 0 10px var(–rosa);
 }
 
 /* PANTALLA INICIO */
@@ -338,28 +344,30 @@ padding: 20px 0;
 }
 
 #start-screen p {
-color: #ffffffbb;
+color: #ddd;
 line-height: 1.6;
 max-width: 500px;
 margin: 0 auto 24px;
 font-size: 0.95rem;
+font-weight: 500;
 }
 
 .start-btn {
-background: linear-gradient(135deg, var(–rojo), var(–naranja), var(–amarillo));
-border: none;
-color: #1a0a2e;
+background: linear-gradient(135deg, var(–rosa), var(–morado));
+border: 2px solid var(–rosa);
+color: #fff;
 padding: 16px 40px;
 border-radius: 14px;
-font-family: ‘Bangers’, cursive;
+font-family: 'Bangers', cursive;
 font-size: 1.8rem;
 letter-spacing: 3px;
 cursor: pointer;
 transition: transform 0.2s, box-shadow 0.2s;
-box-shadow: 0 6px 30px #f4d35e44;
+box-shadow: 0 0 25px var(–rosa), 0 6px 30px var(–rosa)44;
+font-weight: 700;
 }
 
-.start-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 40px #f4d35e66; }
+.start-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 0 40px var(–rosa), 0 12px 50px var(–rosa)66; }
 
 /* PANTALLA FINAL */
 #end-screen {
@@ -381,37 +389,42 @@ margin-bottom: 12px;
 
 .end-score {
 font-size: 1rem;
-color: #ffffffbb;
+color: #ddd;
 margin-bottom: 8px;
+font-weight: 600;
 }
 
 .end-score span {
 font-family: ‘Bangers’, cursive;
 font-size: 2rem;
-color: var(–amarillo);
+color: var(–rosa);
+text-shadow: 0 0 15px var(–rosa);
 }
 
 .end-msg {
 font-size: 1rem;
-color: #ffffffbb;
+color: #ddd;
 margin: 12px 0 24px;
 line-height: 1.5;
+font-weight: 500;
 }
 
 .restart-btn {
 background: linear-gradient(135deg, var(–azul), var(–morado));
-border: none;
+border: 2px solid var(–azul);
 color: #fff;
 padding: 14px 36px;
 border-radius: 12px;
-font-family: ‘Bangers’, cursive;
+font-family: 'Bangers', cursive;
 font-size: 1.5rem;
 letter-spacing: 2px;
 cursor: pointer;
-transition: transform 0.2s;
+transition: transform 0.2s, box-shadow 0.2s;
+font-weight: 700;
+box-shadow: 0 0 20px var(–azul);
 }
 
-.restart-btn:hover { transform: translateY(-2px); }
+.restart-btn:hover { transform: translateY(-2px); box-shadow: 0 0 30px var(–azul), 0 8px 20px var(–azul)44; }
 
 /* UNLOCK TOAST */
 .unlock-toast {
@@ -419,8 +432,8 @@ position: fixed;
 bottom: 30px;
 left: 50%;
 transform: translateX(-50%) translateY(100px);
-background: linear-gradient(135deg, #1a0a2e, #2a0a4e);
-border: 2px solid var(–amarillo);
+background: linear-gradient(135deg, #2d0052, #1a0033);
+border: 2px solid var(–rosa);
 border-radius: 16px;
 padding: 14px 24px;
 display: flex;
@@ -429,15 +442,15 @@ gap: 14px;
 z-index: 100;
 transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
 max-width: 320px;
-box-shadow: 0 8px 30px #000a;
+box-shadow: 0 8px 30px rgba(255, 0, 110, 0.4), 0 0 20px var(–rosa)44;
 }
 
 .unlock-toast.show { transform: translateX(-50%) translateY(0); }
 
 .unlock-toast-face { font-size: 2.2rem; }
 
-.unlock-toast-text { font-size: 0.85rem; }
-.unlock-toast-text strong { display: block; color: var(–amarillo); font-size: 1rem; }
+.unlock-toast-text { font-size: 0.85rem; font-family: 'Poppins', sans-serif; font-weight: 500; }
+.unlock-toast-text strong { display: block; color: var(–rosa); font-size: 1rem; font-weight: 700; text-shadow: 0 0 10px var(–rosa); }
 
 /* DECORACIONES */
 .deco-line {
@@ -446,16 +459,18 @@ justify-content: center;
 gap: 8px;
 margin: 12px 0;
 font-size: 1.2rem;
-opacity: 0.4;
+opacity: 0.6;
+filter: drop-shadow(0 0 8px #ff10f055);
 }
 
 footer {
 text-align: center;
 padding: 30px 0 20px;
 font-size: 0.7rem;
-color: #ffffff33;
+color: #b700ff66;
 letter-spacing: 2px;
 text-transform: uppercase;
+font-weight: 600;
 }
 </style>
 
@@ -468,10 +483,10 @@ text-transform: uppercase;
 <div class="container">
 
   <header>
-    <div class="festival-tag">🎉 Fiestas de Osorno 2025</div>
-    <h1>Las Despistadas</h1>
+    <h1>SMDLS 2026</h1>
+    <h2>🎉Despistadas🎉</h2>
     <p class="subtitle">¿Cuánto sabes de tu pueblo?</p>
-    <div class="osorno-badge">⛪ Osorno la Mayor</div>
+
   </header>
 
   <div class="deco-line">🎊 ★ 🎊 ★ 🎊 ★ 🎊</div>
@@ -495,7 +510,7 @@ text-transform: uppercase;
 <div id="start-screen">
   <p>
     12 preguntas sobre <strong>Osorno la Mayor</strong> — historia, tradiciones, rincones y más.
-    ¡Demuestra que no eres una despistada y desbloquea a todas las del grupo!
+    ¡Demuestra tu sabiduría y desbloquea a todas las del grupo!
   </p>
   <button class="start-btn" onclick="startGame()">¡A JUGAR!</button>
 </div>
