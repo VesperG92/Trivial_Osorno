@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Las Despistadas – Trivial de Osorno</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rojo: #e63946;
+    --amarillo: #f4d35e;
+    --verde: #2a9d8f;
+    --azul: #457b9d;
+    --morado: #9b5de5;
+    --naranja: #f77f00;
+    --rosa: #f72585;
+    --fondo: #1a0a2e;
+    --carta: #ffffff0f;
+  }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: ‘Nunito’, sans-serif;
+background: var(–fondo);
+min-height: 100vh;
+overflow-x: hidden;
+color: #fff;
+}
+
+/* CONFETTI DE FONDO */
+.bg-pattern {
+position: fixed; inset: 0; pointer-events: none; z-index: 0;
+background-image:
+radial-gradient(circle at 20% 20%, #f4d35e22 0%, transparent 40%),
+radial-gradient(circle at 80% 80%, #e6394622 0%, transparent 40%),
+radial-gradient(circle at 50% 50%, #9b5de522 0%, transparent 60%);
+}
+
+.stars {
+position: fixed; inset: 0; pointer-events: none; z-index: 0;
+background-image:
+radial-gradient(1px 1px at 10% 15%, #fff8, transparent),
+radial-gradient(1px 1px at 30% 40%, #fff6, transparent),
+radial-gradient(1px 1px at 60% 10%, #fff8, transparent),
+radial-gradient(1px 1px at 80% 60%, #fff5, transparent),
+radial-gradient(1px 1px at 45% 80%, #fff7, transparent),
+radial-gradient(2px 2px at 90% 25%, #f4d35e, transparent),
+radial-gradient(2px 2px at 15% 70%, #f72585, transparent),
+radial-gradient(2px 2px at 70% 90%, #2a9d8f, transparent);
+}
+
+.container {
+position: relative; z-index: 1;
+max-width: 800px; margin: 0 auto;
+padding: 20px;
+}
+
+/* CABECERA */
+header {
+text-align: center;
+padding: 30px 0 10px;
+}
+
+.festival-tag {
+display: inline-block;
+background: var(–rojo);
+color: #fff;
+font-size: 0.75rem;
+font-weight: 900;
+letter-spacing: 3px;
+text-transform: uppercase;
+padding: 4px 14px;
+border-radius: 2px;
+margin-bottom: 12px;
+}
+
+h1 {
+font-family: ‘Bangers’, cursive;
+font-size: clamp(2.5rem, 8vw, 5rem);
+letter-spacing: 3px;
+line-height: 1;
+background: linear-gradient(135deg, var(–amarillo), var(–naranja), var(–rojo));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-shadow: none;
+filter: drop-shadow(0 0 20px #f4d35e55);
+}
+
+.subtitle {
+font-size: clamp(0.9rem, 3vw, 1.1rem);
+color: #ffffffaa;
+margin-top: 8px;
+letter-spacing: 1px;
+}
+
+.osorno-badge {
+display: inline-block;
+background: linear-gradient(135deg, var(–verde), var(–azul));
+padding: 4px 16px;
+border-radius: 20px;
+font-weight: 900;
+font-size: 0.85rem;
+margin-top: 8px;
+letter-spacing: 2px;
+}
+
+/* TOTEMS */
+#totems-section {
+margin: 24px 0;
+}
+
+.totems-title {
+font-family: ‘Bangers’, cursive;
+font-size: 1.6rem;
+letter-spacing: 2px;
+color: var(–amarillo);
+text-align: center;
+margin-bottom: 4px;
+}
+
+.totems-sub {
+text-align: center;
+font-size: 0.8rem;
+color: #ffffff66;
+margin-bottom: 16px;
+letter-spacing: 1px;
+}
+
+.totems-grid {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 12px;
+}
+
+.totem {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 6px;
+transition: transform 0.3s;
+}
+
+.totem-face {
+width: 70px; height: 70px;
+border-radius: 50%;
+border: 3px solid #ffffff22;
+display: flex; align-items: center; justify-content: center;
+font-size: 2rem;
+background: #1a0a2e;
+filter: grayscale(1) opacity(0.25);
+transition: filter 0.5s, border-color 0.5s, transform 0.5s;
+position: relative;
+overflow: hidden;
+}
+
+.totem-face::after {
+content: '?';
+position: absolute;
+font-family: 'Bangers', cursive;
+font-size: 2rem;
+color: #ffffff44;
+}
+
+.totem.unlocked .totem-face {
+filter: none;
+border-color: var(–amarillo);
+box-shadow: 0 0 16px var(–amarillo);
+transform: scale(1.05);
+animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.totem.unlocked .totem-face::after { display: none; }
+
+.totem-name {
+font-size: 0.7rem;
+font-weight: 900;
+letter-spacing: 1px;
+text-transform: uppercase;
+color: #ffffff44;
+transition: color 0.5s;
+}
+
+.totem.unlocked .totem-name { color: var(–amarillo); }
+
+@keyframes popIn {
+0% { transform: scale(0) rotate(-20deg); }
+100% { transform: scale(1.05); }
+}
+
+/* JUEGO */
+#game-section {
+background: #ffffff0a;
+border: 1px solid #ffffff15;
+border-radius: 20px;
+padding: 24px;
+backdrop-filter: blur(10px);
+}
+
+.progress-bar-wrap {
+background: #ffffff15;
+border-radius: 100px;
+height: 8px;
+margin-bottom: 20px;
+overflow: hidden;
+}
+
+.progress-bar {
+height: 100%;
+background: linear-gradient(90deg, var(–verde), var(–amarillo));
+border-radius: 100px;
+transition: width 0.5s ease;
+}
+
+.q-counter {
+font-size: 0.75rem;
+color: #ffffff55;
+letter-spacing: 2px;
+text-transform: uppercase;
+margin-bottom: 8px;
+}
+
+.question-text {
+font-size: clamp(1rem, 3vw, 1.3rem);
+font-weight: 900;
+line-height: 1.4;
+margin-bottom: 20px;
+color: #fff;
+}
+
+.options {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px;
+}
+
+@media (max-width: 480px) {
+.options { grid-template-columns: 1fr; }
+}
+
+.option-btn {
+background: #ffffff0d;
+border: 2px solid #ffffff20;
+color: #fff;
+padding: 12px 14px;
+border-radius: 12px;
+font-family: ‘Nunito’, sans-serif;
+font-size: 0.95rem;
+font-weight: 700;
+cursor: pointer;
+text-align: left;
+transition: all 0.2s;
+line-height: 1.3;
+}
+
+.option-btn:hover:not(:disabled) {
+background: #ffffff20;
+border-color: var(–amarillo);
+transform: translateY(-2px);
+}
+
+.option-btn.correct {
+background: #2a9d8f33;
+border-color: var(–verde);
+color: var(–verde);
+animation: correctPulse 0.4s ease;
+}
+
+.option-btn.wrong {
+background: #e6394633;
+border-color: var(–rojo);
+color: #ff8fa3;
+}
+
+@keyframes correctPulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.03); }
+100% { transform: scale(1); }
+}
+
+.feedback {
+margin-top: 16px;
+padding: 12px 16px;
+border-radius: 10px;
+font-weight: 700;
+font-size: 0.9rem;
+display: none;
+align-items: center;
+gap: 10px;
+}
+
+.feedback.show { display: flex; }
+.feedback.ok { background: #2a9d8f22; border: 1px solid #2a9d8f66; color: #7fffd4; }
+.feedback.fail { background: #e6394622; border: 1px solid #e6394666; color: #ffb3c1; }
+
+.next-btn {
+display: none;
+margin-top: 16px;
+width: 100%;
+background: linear-gradient(135deg, var(–rojo), var(–naranja));
+border: none;
+color: #fff;
+padding: 14px;
+border-radius: 12px;
+font-family: ‘Bangers’, cursive;
+font-size: 1.3rem;
+letter-spacing: 2px;
+cursor: pointer;
+transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.next-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px #e6394666; }
+.next-btn.show { display: block; }
+
+/* SCORE */
+.score-display {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 16px;
+font-size: 0.85rem;
+color: #ffffff88;
+}
+
+.score-num {
+font-family: ‘Bangers’, cursive;
+font-size: 1.4rem;
+color: var(–amarillo);
+}
+
+/* PANTALLA INICIO */
+#start-screen {
+text-align: center;
+padding: 20px 0;
+}
+
+#start-screen p {
+color: #ffffffbb;
+line-height: 1.6;
+max-width: 500px;
+margin: 0 auto 24px;
+font-size: 0.95rem;
+}
+
+.start-btn {
+background: linear-gradient(135deg, var(–rojo), var(–naranja), var(–amarillo));
+border: none;
+color: #1a0a2e;
+padding: 16px 40px;
+border-radius: 14px;
+font-family: ‘Bangers’, cursive;
+font-size: 1.8rem;
+letter-spacing: 3px;
+cursor: pointer;
+transition: transform 0.2s, box-shadow 0.2s;
+box-shadow: 0 6px 30px #f4d35e44;
+}
+
+.start-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 40px #f4d35e66; }
+
+/* PANTALLA FINAL */
+#end-screen {
+text-align: center;
+padding: 20px;
+display: none;
+}
+
+.end-title {
+font-family: ‘Bangers’, cursive;
+font-size: clamp(2rem, 7vw, 3.5rem);
+letter-spacing: 3px;
+background: linear-gradient(135deg, var(–amarillo), var(–rojo));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+margin-bottom: 12px;
+}
+
+.end-score {
+font-size: 1rem;
+color: #ffffffbb;
+margin-bottom: 8px;
+}
+
+.end-score span {
+font-family: ‘Bangers’, cursive;
+font-size: 2rem;
+color: var(–amarillo);
+}
+
+.end-msg {
+font-size: 1rem;
+color: #ffffffbb;
+margin: 12px 0 24px;
+line-height: 1.5;
+}
+
+.restart-btn {
+background: linear-gradient(135deg, var(–azul), var(–morado));
+border: none;
+color: #fff;
+padding: 14px 36px;
+border-radius: 12px;
+font-family: ‘Bangers’, cursive;
+font-size: 1.5rem;
+letter-spacing: 2px;
+cursor: pointer;
+transition: transform 0.2s;
+}
+
+.restart-btn:hover { transform: translateY(-2px); }
+
+/* UNLOCK TOAST */
+.unlock-toast {
+position: fixed;
+bottom: 30px;
+left: 50%;
+transform: translateX(-50%) translateY(100px);
+background: linear-gradient(135deg, #1a0a2e, #2a0a4e);
+border: 2px solid var(–amarillo);
+border-radius: 16px;
+padding: 14px 24px;
+display: flex;
+align-items: center;
+gap: 14px;
+z-index: 100;
+transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+max-width: 320px;
+box-shadow: 0 8px 30px #000a;
+}
+
+.unlock-toast.show { transform: translateX(-50%) translateY(0); }
+
+.unlock-toast-face { font-size: 2.2rem; }
+
+.unlock-toast-text { font-size: 0.85rem; }
+.unlock-toast-text strong { display: block; color: var(–amarillo); font-size: 1rem; }
+
+/* DECORACIONES */
+.deco-line {
+display: flex;
+justify-content: center;
+gap: 8px;
+margin: 12px 0;
+font-size: 1.2rem;
+opacity: 0.4;
+}
+
+footer {
+text-align: center;
+padding: 30px 0 20px;
+font-size: 0.7rem;
+color: #ffffff33;
+letter-spacing: 2px;
+text-transform: uppercase;
+}
+</style>
+
+</head>
+<body>
+
+<div class="bg-pattern"></div>
+<div class="stars"></div>
+
+<div class="container">
+
+  <header>
+    <div class="festival-tag">🎉 Fiestas de Osorno 2025</div>
+    <h1>Las Despistadas</h1>
+    <p class="subtitle">¿Cuánto sabes de tu pueblo?</p>
+    <div class="osorno-badge">⛪ Osorno la Mayor</div>
+  </header>
+
+  <div class="deco-line">🎊 ★ 🎊 ★ 🎊 ★ 🎊</div>
+
+  <!-- TOTEMS -->
+
+  <div id="totems-section">
+    <div class="totems-title">🏆 Colecciona a las Despistadas</div>
+    <div class="totems-sub">ACIERTA PREGUNTAS PARA DESBLOQUEARLAS</div>
+    <div class="totems-grid" id="totems-grid"></div>
+  </div>
+
+  <div class="deco-line">🎊 ★ 🎊 ★ 🎊 ★ 🎊</div>
+
+  <!-- JUEGO -->
+
+  <div id="game-section">
+
+```
+<!-- INICIO -->
+<div id="start-screen">
+  <p>
+    12 preguntas sobre <strong>Osorno la Mayor</strong> — historia, tradiciones, rincones y más.
+    ¡Demuestra que no eres una despistada y desbloquea a todas las del grupo!
+  </p>
+  <button class="start-btn" onclick="startGame()">¡A JUGAR!</button>
+</div>
+
+<!-- PREGUNTAS -->
+<div id="question-screen" style="display:none">
+  <div class="score-display">
+    <div>Puntos: <span class="score-num" id="score-num">0</span></div>
+    <div id="q-counter-display" class="q-counter">Pregunta 1 / 12</div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progress-bar" style="width:0%"></div>
+  </div>
+  <div class="question-text" id="question-text"></div>
+  <div class="options" id="options-grid"></div>
+  <div class="feedback" id="feedback"></div>
+  <button class="next-btn" id="next-btn" onclick="nextQuestion()">SIGUIENTE ➜</button>
+</div>
+
+<!-- FIN -->
+<div id="end-screen">
+  <div class="end-title" id="end-title">¡FIN!</div>
+  <div class="end-score">Has acertado <span id="end-score-num">0</span> de 12</div>
+  <div class="end-msg" id="end-msg"></div>
+  <button class="restart-btn" onclick="restartGame()">🔄 VOLVER A JUGAR</button>
+</div>
+```
+
+  </div>
+
+  <footer>Programa de fiestas · Peña Las Despistadas · Osorno la Mayor</footer>
+</div>
+
+<!-- TOAST -->
+
+<div class="unlock-toast" id="unlock-toast">
+  <div class="unlock-toast-face" id="toast-face"></div>
+  <div class="unlock-toast-text">
+    <strong id="toast-name"></strong>
+    <span>¡Desbloqueada! 🎉</span>
+  </div>
+</div>
+
+<script>
+// =============================================
+// CONFIGURA AQUÍ A TUS AMIGAS
+// emoji: usa el que más se parezca o un emoji divertido
+// color: color de fondo del totem
+// =============================================
+const CHICAS = [
+  { nombre: "Isabel",   emoji: "🧁", color: "#e63946" },
+  { nombre: "Ana",   emoji: "🌸", color: "#f72585" },
+  { nombre: "Elena",  emoji: "🌻", color: "#f4d35e" },
+  { nombre: "Pilar",emoji: "🦋", color: "#9b5de5" },
+  { nombre: "Carmen",     emoji: "🍉", color: "#2a9d8f" },
+  { nombre: "Vicky",  emoji: "🌙", color: "#457b9d" },
+  { nombre: "Noelia",  emoji: "🦚", color: "#00b4d8" },
+  { nombre: "Esther",   emoji: "🌺", color: "#f77f00" },
+  { nombre: "Lidia",  emoji: "⭐", color: "#b5179e" },
+  { nombre: "Alba",   emoji: "🎸", color: "#4361ee" },
+  { nombre: "Gloritxu", emoji: "🍓", color: "#e63946" },
+  { nombre: "Barbara",   emoji: "🌈", color: "#38b000" },
+];
+
+// =============================================
+// PREGUNTAS: edita / añade lo que quieras
+// =============================================
+const PREGUNTAS = [
+  {
+    p: "¿En qué provincia se encuentra Osorno la Mayor?",
+    ops: ["Burgos", "Palencia", "Valladolid", "León"],
+    r: 1,
+    exp: "Osorno la Mayor pertenece a la provincia de Palencia, en Castilla y León."
+  },
+  {
+    p: "¿Cómo se llama la iglesia parroquial más emblemática del pueblo?",
+    ops: ["San Martín de Tours", "Iglesia de la Asunción", "San Pedro Apóstol", "San Juan Bautista"],
+    r: 1,
+    exp: "La iglesia de Iglesia de la Asunción es el templo principal de Osorno."
+  },
+  {
+    p: "¿Qué río pasa cerca de Osorno la Mayor?",
+    ops: ["Ebro", "Pisuerga", "Duero", "Valdavia"],
+    r: 3,
+    exp: "El río Valdavia discurre por la comarca, próximo a Osorno."
+  },
+  {
+    p: "¿A qué comarca pertenece Osorno la Mayor?",
+    ops: ["Cerrato", "Tierra de Campos", "El Bierzo", "La Loma"],
+    r: 2,
+    exp: "Osorno pertenece a la comarca de Tierra de Campos, en la provincia de Palencia."
+  },
+  {
+    p: "¿Cuál es el símbolo heráldico más característico en el escudo de Osorno?",
+    ops: ["Un león y una cruz", "Una torre y un río", "Un oso y una cadena", "Una espada y una paloma"],
+    r: 0,
+    exp: "El escudo de Osorno presenta el león y la cruz. Esta era bastante fácil."
+  },
+  {
+    p: "¿Qué número de esclusa del Canal de Castilla está situada en Osorno la Mayor?",
+    ops: ["11", "18", "15", "3"],
+    r: 2,
+    exp: "¡Pues si! Es la esclusa nº 15."
+  },
+  {
+    p: "¿Cuál es la festividad más importante del pueblo?",
+    ops: ["Los Oscars", "Los juegos del hambre", "San Miguel de los Santos", "San Miguel Arcángel"],
+    r: 2,
+    exp: "Las fiestas patronales en honor a San Miguel de los Santos son la celebración más esperada del año."
+  },
+  {
+    p: "¿Cuántos habitantes tiene aproximadamente Osorno la Mayor actualmente?",
+    ops: ["Menos de 500", "Entre 500 y 1.000", "Entre 1.000 y 2.000", "Más de 2.000"],
+    r: 1,
+    exp: "Osorno la Mayor cuenta con unos 600-700 habitantes."
+  },
+  {
+    p: "¿Por qué calzada romana histórica pasaba la zona de Osorno?",
+    ops: ["Vía de la Plata", "Calzada de Béjar", "Camino Real de Burgos", "Vía Aquitana"],
+    r: 2,
+    exp: "El antiguo Camino Real de Burgos a León atravesaba la comarca de Osorno, favoreciendo su desarrollo medieval."
+  },
+  {
+    p: "¿Qué cereal es el cultivo más tradicional en las tierras de Osorno?",
+    ops: ["Maíz", "Arroz", "Trigo", "Centeno"],
+    r: 2,
+    exp: "El trigo es el cultivo rey de la Meseta palentina, y Osorno no es una excepción."
+  },
+  {
+    p: "¿Qué ermita o lugar de culto popular se venera en los alrededores de Osorno?",
+    ops: ["Ermita de la Virgen de Ronte", "Ermita de San Roque", "Santuario de la Valdejimena", "Ermita del Cristo del Camino"],
+    r: 0,
+    exp: "La romería a la Ermita es toda una tradición."
+  },
+  {
+    p: "Para eruditas... ¿A qué siglo se remontan los primeros asentamientos de Dessobriga, vinculados a los vacceos?",
+    ops: ["Siglo I a.C.", "Siglo VII a.C.", "Siglo VI a.C.", "Siglo XII"],
+    r: 1,
+    exp: "¡Correcto! ¿Sabías que Dessobriga estuvo habitada durante más de 1.000 años seguidos, desde los vacceos hasta la época romana.?"
+  }
+];
+
+// Estado
+let currentQ = 0;
+let score = 0;
+let unlocked = new Array(CHICAS.length).fill(false);
+let answered = false;
+let shuffledQ = [];
+
+// Construir tótems
+function buildTotems() {
+  const grid = document.getElementById('totems-grid');
+  grid.innerHTML = '';
+  CHICAS.forEach((c, i) => {
+    const div = document.createElement('div');
+    div.className = 'totem' + (unlocked[i] ? ' unlocked' : '');
+    div.id = 'totem-' + i;
+    div.innerHTML = `
+      <div class="totem-face" style="background: ${unlocked[i] ? c.color + '33' : '#1a0a2e'}">
+        ${c.emoji}
+      </div>
+      <div class="totem-name">${c.nombre}</div>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+function shuffle(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+function startGame() {
+  currentQ = 0;
+  score = 0;
+  unlocked = new Array(CHICAS.length).fill(false);
+  shuffledQ = shuffle(PREGUNTAS);
+  document.getElementById('score-num').textContent = '0';
+  buildTotems();
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('end-screen').style.display = 'none';
+  document.getElementById('question-screen').style.display = 'block';
+  showQuestion();
+}
+
+function showQuestion() {
+  answered = false;
+  const q = shuffledQ[currentQ];
+  document.getElementById('q-counter-display').textContent = `Pregunta ${currentQ + 1} / ${shuffledQ.length}`;
+  document.getElementById('progress-bar').style.width = `${(currentQ / shuffledQ.length) * 100}%`;
+  document.getElementById('question-text').textContent = q.p;
+
+  const grid = document.getElementById('options-grid');
+  grid.innerHTML = '';
+  q.ops.forEach((op, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.textContent = op;
+    btn.onclick = () => selectAnswer(i);
+    grid.appendChild(btn);
+  });
+
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback';
+  fb.innerHTML = '';
+  document.getElementById('next-btn').className = 'next-btn';
+}
+
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+  const q = shuffledQ[currentQ];
+  const btns = document.querySelectorAll('.option-btn');
+  btns.forEach(b => b.disabled = true);
+
+  const fb = document.getElementById('feedback');
+
+  if (idx === q.r) {
+    btns[idx].classList.add('correct');
+    score++;
+    document.getElementById('score-num').textContent = score;
+    fb.className = 'feedback ok show';
+    fb.innerHTML = `<span>✅</span><span><strong>¡Correcto!</strong> ${q.exp}</span>`;
+    // Desbloquear totem
+    unlockNextTotem();
+  } else {
+    btns[idx].classList.add('wrong');
+    btns[q.r].classList.add('correct');
+    fb.className = 'feedback fail show';
+    fb.innerHTML = `<span>❌</span><span><strong>¡Ay!</strong> ${q.exp}</span>`;
+  }
+
+  document.getElementById('next-btn').className = 'next-btn show';
+}
+
+function unlockNextTotem() {
+  const nextIdx = unlocked.indexOf(false);
+  if (nextIdx === -1) return;
+  unlocked[nextIdx] = true;
+  const totem = document.getElementById('totem-' + nextIdx);
+  if (totem) {
+    totem.classList.add('unlocked');
+    const face = totem.querySelector('.totem-face');
+    face.style.background = CHICAS[nextIdx].color + '33';
+  }
+  showToast(nextIdx);
+}
+
+let toastTimer = null;
+function showToast(idx) {
+  const toast = document.getElementById('unlock-toast');
+  document.getElementById('toast-face').textContent = CHICAS[idx].emoji;
+  document.getElementById('toast-name').textContent = CHICAS[idx].nombre;
+  toast.classList.add('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= shuffledQ.length) {
+    showEnd();
+  } else {
+    showQuestion();
+  }
+}
+
+function showEnd() {
+  document.getElementById('question-screen').style.display = 'none';
+  document.getElementById('progress-bar').style.width = '100%';
+  const endScreen = document.getElementById('end-screen');
+  endScreen.style.display = 'block';
+  document.getElementById('end-score-num').textContent = score;
+
+  let title, msg;
+  if (score === 12) {
+    title = "¡PERFECTA! 🏆";
+    msg = "12/12. ¡Eres el alma de Osorno! No te despistas ni jugando al trivial. Todas desbloqueadas 🎉";
+  } else if (score >= 9) {
+    title = "¡MUY BIEN! 🌟";
+    msg = `${score}/12. Te sabes el pueblo de arriba abajo. Casi perfecta, ¡una crack de las fiestas!`;
+  } else if (score >= 6) {
+    title = "¡PASABLE! 😄";
+    msg = `${score}/12. Vives en Osorno pero tampoco te has leído el censo, ¿eh? 😂 ¡Venga, otra ronda!`;
+  } else {
+    title = "¡AY SEÑOR! 😅";
+    msg = `${score}/12. Eres una auténtica Despistada. Sin complejos, que para eso es la peña. ¡Vuelve a intentarlo!`;
+  }
+
+  document.getElementById('end-title').textContent = title;
+  document.getElementById('end-msg').textContent = msg;
+}
+
+function restartGame() {
+  document.getElementById('end-screen').style.display = 'none';
+  document.getElementById('start-screen').style.display = 'block';
+  document.getElementById('question-screen').style.display = 'none';
+  unlocked = new Array(CHICAS.length).fill(false);
+  buildTotems();
+}
+
+// Inicializar tótems al cargar
+buildTotems();
+</script>
+
+</body>
+</html>
