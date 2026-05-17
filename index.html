@@ -23,7 +23,7 @@
 
 body {
 font-family: 'Poppins', sans-serif;
-background: #0a0015;
+background: #ff76dd;
 min-height: 100vh;
 overflow-x: hidden;
 color: #fff;
@@ -67,7 +67,7 @@ margin-bottom: 12px;
 }
 
 h1 {
-font-family: ‘Bangers’, cursive;
+font-family: 'Poppins', cursive;
 font-size: clamp(2.5rem, 8vw, 5rem);
 letter-spacing: 3px;
 line-height: 1;
@@ -80,7 +80,7 @@ filter: drop-shadow(0 0 20px #f4d35e55);
 
 .subtitle {
 font-size: clamp(0.9rem, 3vw, 1.1rem);
-color: #00f5ff;
+color: #50ff5e;
 margin-top: 8px;
 letter-spacing: 1px;
 font-weight: 600;
@@ -103,7 +103,7 @@ margin: 24px 0;
 }
 
 .totems-title {
-font-family: ‘Bangers’, cursive;
+font-family: 'Poppins';
 font-size: 1.6rem;
 letter-spacing: 2px;
 color: var(–amarillo);
@@ -114,7 +114,7 @@ margin-bottom: 4px;
 .totems-sub {
 text-align: center;
 font-size: 0.8rem;
-color: #00f5ff;
+color: #50ff5e;
 margin-bottom: 16px;
 letter-spacing: 2px;
 font-weight: 700;
@@ -304,7 +304,7 @@ margin-top: 16px;
 width: 100%;
 background: linear-gradient(135deg, var(–rosa), var(–azul));
 border: 2px solid var(–rosa);
-color: #fff;
+color: #ff7ed8;
 padding: 14px;
 border-radius: 12px;
 font-family: 'Bangers', cursive;
@@ -326,7 +326,7 @@ justify-content: space-between;
 align-items: center;
 margin-bottom: 16px;
 font-size: 0.85rem;
-color: #00f5ff;
+color: #ffffff;
 font-weight: 600;
 }
 
@@ -355,7 +355,7 @@ font-weight: 500;
 .start-btn {
 background: linear-gradient(135deg, var(–rosa), var(–morado));
 border: 2px solid var(–rosa);
-color: #fff;
+color: #ff76dd;
 padding: 16px 40px;
 border-radius: 14px;
 font-family: 'Bangers', cursive;
@@ -412,7 +412,7 @@ font-weight: 500;
 .restart-btn {
 background: linear-gradient(135deg, var(–azul), var(–morado));
 border: 2px solid var(–azul);
-color: #fff;
+color: #ff7ed8;
 padding: 14px 36px;
 border-radius: 12px;
 font-family: 'Bangers', cursive;
@@ -467,7 +467,7 @@ footer {
 text-align: center;
 padding: 30px 0 20px;
 font-size: 0.7rem;
-color: #b700ff66;
+color: #ffffff;
 letter-spacing: 2px;
 text-transform: uppercase;
 font-weight: 600;
@@ -485,7 +485,7 @@ font-weight: 600;
   <header>
     <h1>SMDLS 2026</h1>
     <h2>🎉Despistadas🎉</h2>
-    <p class="subtitle">¿Cuánto sabes de tu pueblo?</p>
+    <p class="subtitle">¿Cuánto sabes de Osorno?</p>
 
   </header>
 
@@ -494,12 +494,13 @@ font-weight: 600;
   <!-- TOTEMS -->
 
   <div id="totems-section">
-    <div class="totems-title">🏆 Colecciona a las Despistadas</div>
-    <div class="totems-sub">ACIERTA PREGUNTAS PARA DESBLOQUEARLAS</div>
+    <div class="totems-title">🏆COLECCIONA A LAS DESPISTADAS🏆</div>
+    <div class="totems-sub">acierta las preguntas para desbloquearlas</div>
     <div class="totems-grid" id="totems-grid"></div>
   </div>
 
   <div class="deco-line">🎊 ★ 🎊 ★ 🎊 ★ 🎊</div>
+  <br>
 
   <!-- JUEGO -->
 
@@ -509,8 +510,8 @@ font-weight: 600;
 <!-- INICIO -->
 <div id="start-screen">
   <p>
-    12 preguntas sobre <strong>Osorno la Mayor</strong> — historia, tradiciones, rincones y más.
-    ¡Demuestra tu sabiduría y desbloquea a todas las del grupo!
+    Preguntas sobre <strong>Osorno la Mayor</strong> — historia, tradiciones, rincones y más.
+    ¡Demuestra tu sabiduría y desbloquea a todas las integrantes de la peña!
   </p>
   <button class="start-btn" onclick="startGame()">¡A JUGAR!</button>
 </div>
@@ -519,7 +520,7 @@ font-weight: 600;
 <div id="question-screen" style="display:none">
   <div class="score-display">
     <div>Puntos: <span class="score-num" id="score-num">0</span></div>
-    <div id="q-counter-display" class="q-counter">Pregunta 1 / 12</div>
+    <div id="q-counter-display" class="q-counter">Pregunta 1 / 13</div>
   </div>
   <div class="progress-bar-wrap">
     <div class="progress-bar" id="progress-bar" style="width:0%"></div>
@@ -533,7 +534,7 @@ font-weight: 600;
 <!-- FIN -->
 <div id="end-screen">
   <div class="end-title" id="end-title">¡FIN!</div>
-  <div class="end-score">Has acertado <span id="end-score-num">0</span> de 12</div>
+  <div class="end-score">Has acertado <span id="end-score-num">0</span> de 13</div>
   <div class="end-msg" id="end-msg"></div>
   <button class="restart-btn" onclick="restartGame()">🔄 VOLVER A JUGAR</button>
 </div>
@@ -541,7 +542,7 @@ font-weight: 600;
 
   </div>
 
-  <footer>Programa de fiestas · Peña Las Despistadas · Osorno la Mayor</footer>
+  <footer>©Peña Despistadas · Osorno la Mayor · 2026</footer>
 </div>
 
 <!-- TOAST -->
@@ -573,6 +574,7 @@ const CHICAS = [
   { nombre: "Alba",   emoji: "🎸", color: "#4361ee" },
   { nombre: "Gloritxu", emoji: "🍓", color: "#e63946" },
   { nombre: "Barbara",   emoji: "🌈", color: "#38b000" },
+  { nombre: "María",   emoji: "🌈", color: "#38b000" },
 ];
 
 // =============================================
@@ -600,7 +602,7 @@ const PREGUNTAS = [
   {
     p: "¿A qué comarca pertenece Osorno la Mayor?",
     ops: ["Cerrato", "Tierra de Campos", "El Bierzo", "La Loma"],
-    r: 2,
+    r: 1,
     exp: "Osorno pertenece a la comarca de Tierra de Campos, en la provincia de Palencia."
   },
   {
@@ -624,14 +626,14 @@ const PREGUNTAS = [
   {
     p: "¿Cuántos habitantes tiene aproximadamente Osorno la Mayor actualmente?",
     ops: ["Menos de 500", "Entre 500 y 1.000", "Entre 1.000 y 2.000", "Más de 2.000"],
-    r: 1,
-    exp: "Osorno la Mayor cuenta con unos 600-700 habitantes."
+    r: 2,
+    exp: "El municipio de Osorno la Mayor cuenta con 1180 habitantes."
   },
   {
-    p: "¿Por qué calzada romana histórica pasaba la zona de Osorno?",
+    p: "¿Qué calzada romana histórica pasaba la zona de Osorno?",
     ops: ["Vía de la Plata", "Calzada de Béjar", "Camino Real de Burgos", "Vía Aquitana"],
-    r: 2,
-    exp: "El antiguo Camino Real de Burgos a León atravesaba la comarca de Osorno, favoreciendo su desarrollo medieval."
+    r: 3,
+    exp: "Sigue el trazado de una antigua calzada romana que unía Hispania con la Galia."
   },
   {
     p: "¿Qué cereal es el cultivo más tradicional en las tierras de Osorno?",
@@ -649,7 +651,13 @@ const PREGUNTAS = [
     p: "Para eruditas... ¿A qué siglo se remontan los primeros asentamientos de Dessobriga, vinculados a los vacceos?",
     ops: ["Siglo I a.C.", "Siglo VII a.C.", "Siglo VI a.C.", "Siglo XII"],
     r: 1,
-    exp: "¡Correcto! ¿Sabías que Dessobriga estuvo habitada durante más de 1.000 años seguidos, desde los vacceos hasta la época romana.?"
+    exp: "¿Sabías que Dessobriga estuvo habitada durante más de 1.000 años seguidos, desde los vacceos hasta la época romana?"
+  },
+  {
+    p: "¿Cuál es la bebida tradicional que distribuye la peña Despistadas durante las fiestas?",
+    ops: ["Sol y sombra", "Tequila", "43 chocolate", "Leche de búfala"],
+    r: 2,
+    exp: "Eso solo significa que has probado tremendo elixir!"
   }
 ];
 
@@ -785,18 +793,18 @@ function showEnd() {
   document.getElementById('end-score-num').textContent = score;
 
   let title, msg;
-  if (score === 12) {
+  if (score === 13) {
     title = "¡PERFECTA! 🏆";
-    msg = "12/12. ¡Eres el alma de Osorno! No te despistas ni jugando al trivial. Todas desbloqueadas 🎉";
-  } else if (score >= 9) {
+    msg = "13/13. ¡Eres el alma de Osorno! No te despistas ni jugando al trivial. Todas desbloqueadas 🎉";
+  } else if (score >= 10) {
     title = "¡MUY BIEN! 🌟";
-    msg = `${score}/12. Te sabes el pueblo de arriba abajo. Casi perfecta, ¡una crack de las fiestas!`;
-  } else if (score >= 6) {
+    msg = `${score}/13. Te sabes el pueblo de arriba abajo. Casi perfecta, ¡una crack de las fiestas!`;
+  } else if (score >= 7) {
     title = "¡PASABLE! 😄";
-    msg = `${score}/12. Vives en Osorno pero tampoco te has leído el censo, ¿eh? 😂 ¡Venga, otra ronda!`;
+    msg = `${score}/13. Eres de Osorno pero tampoco te has leído el censo, ¿eh? 😂 ¡Venga, otra ronda!`;
   } else {
     title = "¡AY SEÑOR! 😅";
-    msg = `${score}/12. Eres una auténtica Despistada. Sin complejos, que para eso es la peña. ¡Vuelve a intentarlo!`;
+    msg = `${score}/13. Eres una auténtica Despistada. Sin complejos, que para eso es la peña. ¡Vuelve a intentarlo!`;
   }
 
   document.getElementById('end-title').textContent = title;
